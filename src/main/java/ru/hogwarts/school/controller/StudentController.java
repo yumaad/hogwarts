@@ -1,0 +1,53 @@
+package ru.hogwarts.school.controller;
+
+import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.service.StudentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+    private final StudentService service;
+
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public Student create(@RequestBody Student student) {
+        return service.create(student);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Student> read(@PathVariable long id) {
+        Student student = service.read(id);
+        return student != null
+                ? ResponseEntity.ok(student)
+                : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping
+    public Student update(@RequestBody Student student) {
+        return service.update(student);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable long id) {
+        service.delete(id);
+    }
+
+    @GetMapping("/age/{age}")
+    public List<Student> findByAge(@PathVariable int age) {
+        return service.findByAge(age);
+    }
+
+    @GetMapping("/age-between")
+    public List<Student> findByAgeBetween(
+            @RequestParam int minAge,
+            @RequestParam int maxAge
+    ) {
+        return service.findByAgeBetween(minAge, maxAge);
+    }
+}
