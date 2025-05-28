@@ -1,7 +1,10 @@
 package ru.hogwarts.school.model;
 
 import jakarta.persistence.*;
-import java.util.*;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Faculty {
@@ -11,7 +14,7 @@ public class Faculty {
     private String name;
     private String color;
 
-    @OneToMany(mappedBy = "faculty")
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
     private Set<Student> students = new HashSet<>();
 
     public Faculty() {}
