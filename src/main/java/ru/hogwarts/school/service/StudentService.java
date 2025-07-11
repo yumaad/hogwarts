@@ -45,7 +45,7 @@ public class StudentService {
                 .orElse(null);
     }
 
-     public Integer countAllStudents() {
+    public Integer countAllStudents() {
         return repository.countAllStudents();
     }
 
