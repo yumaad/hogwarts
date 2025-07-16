@@ -72,4 +72,14 @@ public class StudentController {
     public List<Student> getLastFiveStudents() {
         return service.findLastFiveStudents();
     }
+
+    @GetMapping("/names-starting-with-a")
+    public List<String> getStudentsNamesStartingWithA() {
+        return service.getStudentsNamesStartingWithA();
+    }
+
+    @GetMapping("/longest-faculty-name")
+    public String getLongestFacultyName() {
+        return service.getLongestFacultyName();
+    }
 }
