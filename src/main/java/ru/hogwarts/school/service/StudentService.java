@@ -73,7 +73,7 @@ public class StudentService {
     }
 
     public List<String> getStudentsNamesStartingWithA() {
-        return repository.findAll().stream()
+        return repository.findAll().parallelStream()
                 .map(Student::getName)
                 .filter(name -> name.startsWith("A"))
                 .map(String::toUpperCase)
@@ -82,7 +82,7 @@ public class StudentService {
     }
 
     public String getLongestFacultyName() {
-        return repository.findAll().stream()
+        return repository.findAll().parallelStream()
                 .map(Student::getFaculty)
                 .filter(Objects::nonNull)
                 .map(Faculty::getName)
