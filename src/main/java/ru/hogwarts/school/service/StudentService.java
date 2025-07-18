@@ -10,6 +10,9 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -67,5 +70,23 @@ public class StudentService {
 
     public List<Student> findLastFiveStudents() {
         return repository.findLastFiveStudents();
+    }
+
+    public List<String> getStudentsNamesStartingWithA() {
+        return repository.findAll().parallelStream()
+                .map(Student::getName)
+                .filter(name -> name.startsWith("A"))
+                .map(String::toUpperCase)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public String getLongestFacultyName() {
+        return repository.findAll().parallelStream()
+                .map(Student::getFaculty)
+                .filter(Objects::nonNull)
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
     }
 }
