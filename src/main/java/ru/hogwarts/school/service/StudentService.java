@@ -23,6 +23,10 @@ public class StudentService {
         this.repository = repository;
     }
 
+    public List<Student> getAllStudents() {
+        return repository.findAll();
+    }
+
     public Student create(Student student) {
         logger.info("Creating student: {}", student.getName());
         return repository.save(student);

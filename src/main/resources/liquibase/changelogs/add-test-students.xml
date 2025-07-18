@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <changeSet id="v1.1-add-test-students" author="your_name">
+        <!-- Добавляем 6 тестовых студентов -->
+        <insert tableName="student">
+            <column name="name" value="Harry Potter"/>
+            <column name="age" value="11"/>
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Hermione Granger"/>
+            <column name="age" value="12"/>
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Ron Weasley"/>
+            <column name="age" value="11"/>
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Draco Malfoy"/>
+            <column name="age" value="11"/>
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Luna Lovegood"/>
+            <column name="age" value="10"/>
+        </insert>
+        <insert tableName="student">
+            <column name="name" value="Neville Longbottom"/>
+            <column name="age" value="11"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -17,6 +17,48 @@ public class StudentController {
         this.service = service;
     }
 
+    @GetMapping("/print-parallel")
+    public void printStudentsParallel() {
+        List<Student> students = service.getAllStudents();
+        if (students.size() >= 6) {
+            System.out.println(students.get(0).getName());
+            System.out.println(students.get(1).getName());
+
+            new Thread(() -> {
+                System.out.println(students.get(2).getName());
+                System.out.println(students.get(3).getName());
+            }).start();
+
+            new Thread(() -> {
+                System.out.println(students.get(4).getName());
+                System.out.println(students.get(5).getName());
+            }).start();
+        }
+    }
+
+    @GetMapping("/print-synchronized")
+    public void printStudentsSynchronized() {
+        List<Student> students = service.getAllStudents();
+        if (students.size() >= 6) {
+            printStudentName(students.get(0));
+            printStudentName(students.get(1));
+
+            new Thread(() -> {
+                printStudentName(students.get(2));
+                printStudentName(students.get(3));
+            }).start();
+
+            new Thread(() -> {
+                printStudentName(students.get(4));
+                printStudentName(students.get(5));
+            }).start();
+        }
+    }
+
+    private synchronized void printStudentName(Student student) {
+        System.out.println(student.getName());
+    }
+
     @PostMapping
     public Student create(@RequestBody Student student) {
         return service.create(student);
