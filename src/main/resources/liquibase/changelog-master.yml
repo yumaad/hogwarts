@@ -3,3 +3,5 @@ databaseChangeLog:
       file: classpath:liquibase/changelogs/create-student-name-index.sql
   - include:
       file: classpath:liquibase/changelogs/create-faculty-name-color-index.sql
+  - include:
+      file: classpath:liquibase/changelogs/add-test-students.sql
